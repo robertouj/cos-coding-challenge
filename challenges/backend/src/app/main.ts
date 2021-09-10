@@ -5,6 +5,9 @@ import { DependencyIdentifier } from "./DependencyIdentifiers";
 import { AuctionMonitorApp } from "./AuctionMonitorApp";
 import { ICarOnSaleClient } from "./services/CarOnSaleClient/interface/ICarOnSaleClient";
 import { CarOnSaleClient } from "./services/CarOnSaleClient/classes/CarOnSaleClient";
+import { IAuth } from "./services/Auth/interface/IAuth";
+import { HardcodedAuth } from "./services/Auth/classes/HardcodedAuth";
+
 
 /*
  * Create the DI container.
@@ -18,6 +21,8 @@ const container = new Container({
  */
 container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
 container.bind<ICarOnSaleClient>(DependencyIdentifier.CARONSALECLIENT).to(CarOnSaleClient);
+container.bind<IAuth>(DependencyIdentifier.AUTH).to(HardcodedAuth);
+
 
 
 /*
