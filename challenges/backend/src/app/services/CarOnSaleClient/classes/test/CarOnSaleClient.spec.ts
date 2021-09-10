@@ -66,6 +66,9 @@ describe('CarOnSaleClient tests using ASSERT inteface from CHAI module: ', () =>
 
   });
 
+  /**
+   * Tests for calculations 
+   */
   describe('Check Helper class AuctionHelpers: ', () => {
 
     describe('Check getTotalAuctions() Function: ', () => {
@@ -91,6 +94,9 @@ describe('CarOnSaleClient tests using ASSERT inteface from CHAI module: ', () =>
 
   });
 
+  /**
+   * Tests for get auctions service 
+   */
   describe('Check getRunningAuctions() Function from ICarOnSaleClient: ', () => {
 
     it('Check array returned value using: assert.notEqual;', async () => {
@@ -100,6 +106,9 @@ describe('CarOnSaleClient tests using ASSERT inteface from CHAI module: ', () =>
     });
   });
 
+  /**
+   * Tests for authoritation service 
+   */
   describe('Check Functions from HardcodedAuth: ', () => {
     describe('Check getAuthToken() Function from HardcodedAuth: ', () => {
 
