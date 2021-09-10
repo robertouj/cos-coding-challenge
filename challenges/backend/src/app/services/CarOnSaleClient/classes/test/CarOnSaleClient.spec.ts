@@ -7,12 +7,41 @@ import { IAuth } from "../../../Auth/interface/IAuth";
 import { HardcodedAuth } from "../../../Auth/classes/HardcodedAuth";
 import { ILogger } from "../../../Logger/interface/ILogger";
 import { Logger } from "../../../Logger/classes/Logger";
+import AuctionHelpers from "../../../../AuctionHelpers";
+import { IAuction } from '../../interface/IAuction';
 
 // define related test blocks
 describe('CarOnSaleClient tests using ASSERT inteface from CHAI module: ', () => {
 
   let carOnSaleClient: ICarOnSaleClient;
   let hardcodedAuth: IAuth;
+  let mockedAuctions: Array<IAuction> = [
+    {
+      id: 16943,
+      numBids: 64,
+      minimumRequiredAsk: 5279,
+      currentHighestBidValue: 434
+
+    },
+    {
+      id: 16944,
+      numBids: 3,
+      minimumRequiredAsk: 12216,
+      currentHighestBidValue: 243
+    },
+    {
+      id: 16945,
+      numBids: 7,
+      minimumRequiredAsk: 19520,
+      currentHighestBidValue: 852
+    },
+    {
+      id: 16946,
+      numBids: 94,
+      minimumRequiredAsk: 2937,
+      currentHighestBidValue: 928
+    },
+  ];
 
   beforeEach(() => {
     /*
@@ -34,6 +63,31 @@ describe('CarOnSaleClient tests using ASSERT inteface from CHAI module: ', () =>
      */
     carOnSaleClient = container.get<ICarOnSaleClient>(DependencyIdentifier.CARONSALECLIENT);
     hardcodedAuth = container.get<IAuth>(DependencyIdentifier.AUTH);
+
+  });
+
+  describe('Check Helper class AuctionHelpers: ', () => {
+
+    describe('Check getTotalAuctions() Function: ', () => {
+      it('Check the returned value using: assert.equal;', () => {
+        const result = AuctionHelpers.getTotalAuctions(mockedAuctions);
+        assert.equal(result, 4);
+      });
+    });
+
+    describe('Check getAverageBidsOnAuction() Function: ', () => {
+      it('Check the returned value using: assert.equal;', () => {
+        const result = AuctionHelpers.getAverageBidsOnAuction(mockedAuctions);
+        assert.equal(result, 42);
+      });
+    });
+
+    describe('Check getAverageAuctionProgress() Function: ', () => {
+      it('Check the returned value using: assert.equal;', () => {
+        const result = AuctionHelpers.getAverageAuctionProgress(mockedAuctions);
+        assert.equal(result, 11.543017543671416);
+      });
+    });
 
   });
 
